@@ -1,0 +1,6 @@
+framework module JxSwiftHelper {
+  umbrella header "JxSwiftHelper-umbrella.h"
+
+  export *
+  module * { export * }
+}
