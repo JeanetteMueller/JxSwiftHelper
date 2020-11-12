@@ -8,10 +8,10 @@
 
 import Foundation
 
-extension URL {
+public extension URL {
 
     // Returns true if given file is a directory
-    public var fileIsDirectory: Bool {
+    var fileIsDirectory: Bool {
         var isdirv: AnyObject?
         do {
             try (self as NSURL).getResourceValue(&isdirv, forKey: URLResourceKey.isDirectoryKey)
@@ -21,7 +21,7 @@ extension URL {
     }
 
     // File modification date, nil if file doesn't exist
-    public var fileModifiedDate: Date? {
+    var fileModifiedDate: Date? {
         get {
             var datemodv: AnyObject?
             do {
@@ -39,7 +39,7 @@ extension URL {
     }
 
     // File creation date, nil if file doesn't exist
-    public var fileCreationDate: Date? {
+    var fileCreationDate: Date? {
         get {
             var datecreatev: AnyObject?
             do {
@@ -58,7 +58,7 @@ extension URL {
     }
 
     // Returns last file access date, nil if file doesn't exist or not yet accessed
-    public var fileAccessDate: Date? {
+    var fileAccessDate: Date? {
         _ = URLResourceKey.customIconKey
         var dateaccessv: AnyObject?
         do {
@@ -69,7 +69,7 @@ extension URL {
     }
 
     // Returns file size, -1 if file doesn't exist
-    public var fileSize: Int64 {
+    var fileSize: Int64 {
         var sizev: AnyObject?
         do {
             try (self as NSURL).getResourceValue(&sizev, forKey: URLResourceKey.fileSizeKey)
@@ -79,7 +79,7 @@ extension URL {
     }
 
     // File is hidden or not, don't care about files beginning with dot
-    public var fileIsHidden: Bool {
+    var fileIsHidden: Bool {
         get {
             var ishiddenv: AnyObject?
             do {
@@ -98,7 +98,7 @@ extension URL {
     }
 
     // Checks if file is writable
-    public var fileIsWritable: Bool {
+    var fileIsWritable: Bool {
         var isdirv: AnyObject?
         do {
             try (self as NSURL).getResourceValue(&isdirv, forKey: URLResourceKey.isWritableKey)
@@ -108,7 +108,7 @@ extension URL {
     }
 
     // Set SkipBackup attrubute of file or directory in iOS. return current state if no value is set
-    public func skipBackupAttributeToItemAtURL(_ skip: Bool? = nil) -> Bool {
+    func skipBackupAttributeToItemAtURL(_ skip: Bool? = nil) -> Bool {
         let keys = [URLResourceKey.isDirectoryKey, URLResourceKey.fileSizeKey]
         let enumOpt = FileManager.DirectoryEnumerationOptions()
         if FileManager.default.fileExists(atPath: self.path) {

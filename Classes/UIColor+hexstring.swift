@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIColor{
+public extension UIColor{
     
     class func colorFromHex(_ hex:String) -> UIColor {
         return UIColor.fromHexstring(hex: hex)

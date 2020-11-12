@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UIImageCache:NSCache<NSString, UIImage> {
+open class UIImageCache:NSCache<NSString, UIImage> {
     static let shared: UIImageCache = {
         
         let instance = UIImageCache()
@@ -18,7 +18,7 @@ class UIImageCache:NSCache<NSString, UIImage> {
         return instance
     }()
 }
-extension UIViewController {
+public extension UIViewController {
     func cleanCaches() {
         
         UIImageCache.shared.removeAllObjects()
@@ -26,7 +26,7 @@ extension UIViewController {
         //        DataStore.shared.episodesCache.removeAllObjects()
     }
 }
-extension UIImage {
+public extension UIImage {
 
     class func getFilePath(withUrl url:URL) -> String {
         

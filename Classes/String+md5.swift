@@ -19,7 +19,7 @@ import CommonCrypto
 import CryptoKit // statt CommonCrypto
 
 
-extension String {
+public extension String {
 
     //ab iOS 13
     func md5() -> String {
@@ -93,26 +93,4 @@ extension String {
 //        }
 //
 //}
-extension NSURL {
-    // new functionality to add to SomeType goes here
 
-    func md5() -> String {
-
-        let urlString = self.absoluteString! as String
-
-        return urlString.md5()
-    }
-
-}
-
-extension URL {
-    // new functionality to add to SomeType goes here
-
-    func md5() -> String {
-
-        let urlString = self.absoluteString as String
-
-        return urlString.md5()
-    }
-
-}

@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'JxSwiftHelper'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of JxSwiftHelper.'
+  s.summary          = 'A Collection of Extensions and Helper to work faster'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,20 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+
+  FileHelper: More Acces to the Filesystem
+  Logging: Log your Message to console and dont when release your code
+  PhotoOperations: Download or change Images
+  PinchToZoomImageView
+  String+Localized: Use "".localized as an easy way to translate strings
+  String+md5: get hash from string
+  String+SubString: the mising substring method
+  UIColor+hexstring: colors from CSS Hexcode
+  UIImage+grayScale: get image without color
+  UIImage+resized: resize your images and cache them to the local filesystem
+  UIImageView+LoadImage: download images from web, resize and store them localy
+  URL+Helper: Work with your urls
+  
                        DESC
 
   s.homepage         = 'https://github.com/JeanetteMueller/JxSwiftHelper'
