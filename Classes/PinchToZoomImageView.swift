@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/*
 open class PinchToZoomImageView: UIImageView {
     
     /**
@@ -336,3 +336,5 @@ extension PinchToZoomImageView: UIGestureRecognizerDelegate {
         return true
     }
 }
+
+ */

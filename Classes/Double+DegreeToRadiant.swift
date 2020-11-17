@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Double {
+public extension Double {
 
     func degreesToRadians() -> CGFloat {
         return CGFloat((Double.pi * self) / 180)

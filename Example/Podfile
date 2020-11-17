@@ -1,6 +1,0 @@
-use_frameworks!
-target 'JxSwiftHelper_Tests' do
-  pod 'JxSwiftHelper', :path => '../'
-  
-  
-end

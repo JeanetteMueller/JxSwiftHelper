@@ -1,6 +1,0 @@
-framework module Pods_JxSwiftHelper_Tests {
-  umbrella header "Pods-JxSwiftHelper_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}

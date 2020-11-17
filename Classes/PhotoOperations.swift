@@ -6,7 +6,6 @@
 //  Copyright © 2016 Jeanette Müller. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 // This enum contains all the possible states a photo record can be in
@@ -38,7 +37,10 @@ public class PhotoRecord {
 
     public func getFilePath() -> String {
 
-        return UIImage.getFilePath(withUrl: self.url)
+    
+        let imageDir = FileHelper.shared.getImagesFolderPath()
+        
+        return imageDir.appending("/").appending(self.url.md5())
     }
 }
 
