@@ -21,19 +21,43 @@ open class FileHelper {
     
     public func getAllFiles(_ path: String) -> [String] {
         var results = [String]()
-        do {
-            var isDir: ObjCBool = false
-            if FileManager.default.fileExists(atPath: path, isDirectory: &isDir) {
-                let contents = try FileManager.default.contentsOfDirectory(atPath: path)
+        
+        var basePath = path
+        if !basePath.hasSuffix("/") {
+            basePath.append("/")
+        }
+        
+        let man = FileManager.default
+        
+        var basePathIsDir: ObjCBool = false
+        if man.fileExists(atPath: basePath, isDirectory: &basePathIsDir) {
+            if basePathIsDir.boolValue {
                 
-                for item in contents {
-                    let filePath = String(format: "%@/%@", path, item)
-                    results.append(filePath)
+                
+                
+                do {
+                    let contents = try man.contentsOfDirectory(atPath: basePath)
+                    for item in contents {
+                        
+                        let filePath = "\(basePath)\(item)"
+                        
+                        var isDir: ObjCBool = false
+                        if man.fileExists(atPath: filePath, isDirectory: &isDir) {
+                            
+                            results.append(filePath)
+                            
+                            if isDir.boolValue {
+                                results.append(contentsOf: self.getAllFiles(filePath))
+                            }
+                        }
+                    }
+                    
+                } catch let error as NSError {
+                    log("getDownloaded fromPath ERROR: ", error.localizedDescription)
                 }
             }
-        } catch let error as NSError {
-            log("getDownloaded fromPath ERROR: ", error.localizedDescription)
         }
+        
         return results
     }
     public func urlIsMediaFile(_ url: URL) -> Bool {
