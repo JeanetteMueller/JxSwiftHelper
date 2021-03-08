@@ -171,17 +171,20 @@ open class FileHelper {
         }
         return path
     }
-    public func getFileSizeFromFile(_ path: String) -> Float {
-        var usedDiscspace: Float = 0
+    public func getFileSizeFromFile(_ path: String) -> Int64 {
+        var usedDiscspace: Int64 = 0
         do {
             let attr = try FileManager.default.attributesOfItem(atPath: path)
             if let fileSize = attr[FileAttributeKey.size] as? Double {
                 
-                usedDiscspace += Float(fileSize)
+                usedDiscspace += Int64(fileSize)
             } else if let fileSize = attr[FileAttributeKey.size] as? Int {
                 
-                usedDiscspace += Float(fileSize)
+                usedDiscspace += Int64(fileSize)
             } else if let fileSize = attr[FileAttributeKey.size] as? Float {
+                
+                usedDiscspace += Int64(fileSize)
+            } else if let fileSize = attr[FileAttributeKey.size] as? Int64 {
                 
                 usedDiscspace += fileSize
             }
