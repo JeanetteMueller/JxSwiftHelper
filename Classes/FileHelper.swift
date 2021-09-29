@@ -33,8 +33,6 @@ open class FileHelper {
         if man.fileExists(atPath: basePath, isDirectory: &basePathIsDir) {
             if basePathIsDir.boolValue {
                 
-                
-                
                 do {
                     let contents = try man.contentsOfDirectory(atPath: basePath)
                     for item in contents {
@@ -53,11 +51,11 @@ open class FileHelper {
                     }
                     
                 } catch let error as NSError {
-                    log("getDownloaded fromPath ERROR: ", error.localizedDescription)
+                    log("🛑 getDownloaded fromPath ERROR: ", error.localizedDescription)
                 }
             }
         }
-        
+        print("getAllFiles \(path) results \(results)")
         return results
     }
     public func urlIsMediaFile(_ url: URL) -> Bool {
@@ -155,7 +153,7 @@ open class FileHelper {
         do {
             try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
         } catch {
-            log("Error: \(error)")
+            log("🛑 Error: \(error)")
         }
         return path
     }
@@ -167,7 +165,7 @@ open class FileHelper {
         do {
             try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
         } catch {
-            log("Error: \(error)")
+            log("🛑 Error: \(error)")
         }
         return path
     }
@@ -189,7 +187,7 @@ open class FileHelper {
                 usedDiscspace += fileSize
             }
         } catch {
-            log("Error: \(error)")
+            log("🛑 Error: \(error)")
             
         }
         return usedDiscspace

@@ -8,7 +8,7 @@
 import Foundation
 
 public extension String {
-    static func systemInfo(_ format: String = "%@ / %@.%@\n%@ %@ %@\n%@\n%@") -> String {
+    static func systemInfo(_ format: String = "%@ / %@\nBuild %@\n%@ %@ %@\n%@") -> String {
         var currentLang = ""
         if let langs = UserDefaults.standard.value(forKey: "AppleLanguages") as? [String] {
             if let first = langs.first {
@@ -20,7 +20,6 @@ public extension String {
             var name = ""
             var shortVersion = ""
             var version = ""
-            let swiftVersion = String.swiftVersion()
             
             if let x = bundleDict[kCFBundleNameKey as String] as? String {
                 name = x
@@ -39,7 +38,6 @@ public extension String {
                           UIDevice.current.model,
                           UIDevice.current.systemName,
                           UIDevice.current.systemVersion,
-                          swiftVersion,
                           currentLang
             )
         }
