@@ -8,17 +8,17 @@
 
 import Foundation
 
-func log(_ items: Any...) {
+public func log(_ items: Any...) {
     #if DEBUG
     print(items)
     #endif
 }
-func log(_ items: Any..., terminator: String) {
+public func log(_ items: Any..., terminator: String) {
     #if DEBUG
     print(items, terminator: terminator)
     #endif
 }
-func log(_ items: Any..., separator: String, terminator: String) {
+public func log(_ items: Any..., separator: String, terminator: String) {
     #if DEBUG
     print(items, separator: separator, terminator: terminator)
     #endif
