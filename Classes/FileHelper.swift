@@ -17,14 +17,37 @@ open class FileHelper {
         return instance
     }()
     
+    init() {
+        allFilesCached = NSCache<NSString, NSArray>()
+    }
+    
     public var securityApplicationGroupIdentifier: String = ""
     
-    public func getAllFiles(_ path: String) -> [String] {
+    private var allFilesCached: NSCache<NSString, NSArray>
+    public func clearAllFilesCache(_ path: String? = nil) {
+        
+        if var p = path {
+            if !p.hasSuffix("/") {
+                p.append("/")
+            }
+            
+            self.allFilesCached.removeObject(forKey: p as NSString)
+        }else{
+            self.allFilesCached.removeAllObjects()
+        }
+    }
+    public func getAllFiles(_ path: String, withForce force:Bool = false) -> [String] {
         var results = [String]()
         
         var basePath = path
         if !basePath.hasSuffix("/") {
             basePath.append("/")
+        }
+        
+        if !force {
+            if let v = self.allFilesCached.object(forKey: basePath as NSString) as? [String] {
+                return v
+            }
         }
         
         let man = FileManager.default
@@ -56,6 +79,9 @@ open class FileHelper {
             }
         }
         print("getAllFiles \(path) results \(results)")
+        
+        self.allFilesCached.setObject(results as NSArray, forKey: basePath as NSString)
+        
         return results
     }
     public func urlIsMediaFile(_ url: URL) -> Bool {
@@ -122,14 +148,6 @@ open class FileHelper {
         
         #if os(iOS)
         if let containerPath = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: self.securityApplicationGroupIdentifier) {
-            let path = documentsDirectory.appending("/images")
-            for item in FileHelper.shared.getAllFiles(path) {
-                do {
-                    try FileManager.default.removeItem(atPath: item)
-                } catch _ as NSError {
-                    
-                }
-            }
             
             documentsDirectory = containerPath.path
         }
