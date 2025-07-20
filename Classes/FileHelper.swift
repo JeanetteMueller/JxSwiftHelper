@@ -78,7 +78,6 @@ open class FileHelper {
                 }
             }
         }
-        print("getAllFiles \(path) results \(results)")
         
         self.allFilesCached.setObject(results as NSArray, forKey: basePath as NSString)
         
@@ -135,23 +134,23 @@ open class FileHelper {
         }
         return path
     }
-    #if os(tvOS)
+#if os(tvOS)
     public func getDatabaseFolderPath() -> String {
         let documentsDirectory = FileHelper.getBaseDirectory()
         
         return documentsDirectory
     }
-    #endif
+#endif
     
     public func getImagesFolderPath() -> String {
         var documentsDirectory = self.getBaseDirectory()
         
-        #if os(iOS)
+#if os(iOS)
         if let containerPath = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: self.securityApplicationGroupIdentifier) {
             
             documentsDirectory = containerPath.path
         }
-        #endif
+#endif
         
         let path = documentsDirectory.appending("/images")
         
@@ -160,6 +159,7 @@ open class FileHelper {
         } catch _ as NSError {
             
         }
+        
         return path
     }
     

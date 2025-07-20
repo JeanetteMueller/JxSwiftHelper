@@ -27,19 +27,41 @@ public class PhotoRecord {
     }
 
     public init?(string: String) {
-        if !string.isEmpty, let newUrl = URL(string: string) {
+        if string.isEmpty {
+            return nil
+        }else if let newUrl = URL(string: string) {
             self.path = string
             self.url = newUrl
         } else {
-            return nil
+            let urlString = string.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            if let string = urlString, let newUrl = URL(string: string) {
+                self.path = string
+                self.url = newUrl
+            } else {
+                return nil
+            }
         }
     }
 
     public func getFilePath() -> String {
 
-    
         let imageDir = FileHelper.shared.getImagesFolderPath()
         
-        return imageDir.appending("/").appending(self.url.md5())
+        let filename = self.url.md5()
+        
+        //let alternative = self.url
+        
+        return imageDir.appending("/").appending(filename)
+    }
+    
+    public var isDropbox:Bool {
+        let prefix = "dropboxcustom://"
+        
+        return self.path.prefix(prefix.length) == prefix
+    }
+    public var isIcloud:Bool {
+        let prefix = "icloudcustom://"
+        
+        return self.path.prefix(prefix.length) == prefix
     }
 }

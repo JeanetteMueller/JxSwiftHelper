@@ -7,9 +7,9 @@
 //
 
 
-public class ImageDownloader: Operation {
+open class ImageDownloader: Operation {
     //1
-    let photoRecord: PhotoRecord
+    public let photoRecord: PhotoRecord
 
     //2
     public init(photoRecord: PhotoRecord) {
@@ -17,7 +17,7 @@ public class ImageDownloader: Operation {
     }
 
     //3
-    public override func main() {
+    open override func main() {
 
         if self.isCancelled {
             return
