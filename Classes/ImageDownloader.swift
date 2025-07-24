@@ -6,8 +6,7 @@
 //  Copyright © 2016 Jeanette Müller. All rights reserved.
 //
 
-
-open class ImageDownloader: Operation {
+open class ImageDownloader: Operation, @unchecked Sendable {
     //1
     public let photoRecord: PhotoRecord
 

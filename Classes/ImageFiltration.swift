@@ -8,8 +8,7 @@
 
 import UIKit
 
-
-public class ImageFiltration: Operation {
+public class ImageFiltration: Operation, @unchecked Sendable {
     let photoRecord: PhotoRecord
 
     init(photoRecord: PhotoRecord) {
