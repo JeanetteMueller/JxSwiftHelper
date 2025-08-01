@@ -117,9 +117,7 @@ open class FileHelper {
         
         do {
             try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
-        } catch _ as NSError {
-            
-        }
+        } catch { }
         return path
     }
     public func getUrlSessionResumeDataFolderPath() -> String {
@@ -129,9 +127,7 @@ open class FileHelper {
         
         do {
             try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
-        } catch _ as NSError {
-            
-        }
+        } catch { }
         return path
     }
 #if os(tvOS)
@@ -156,9 +152,7 @@ open class FileHelper {
         
         do {
             try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
-        } catch _ as NSError {
-            
-        }
+        } catch { }
         
         return path
     }
