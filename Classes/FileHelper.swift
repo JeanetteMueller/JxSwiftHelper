@@ -110,24 +110,33 @@ open class FileHelper {
         
         return documentsDirectory
     }
+    
+
     public func getUrlSessionDownloadFolderPath() -> String {
         let documentsDirectory = self.getBaseDirectory()
         
         let path = documentsDirectory.appending("/urlSessionDownloadFolder")
         
-        do {
-            try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
-        } catch { }
+        Task { @MainActor in
+            do {
+                try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+            } catch { }
+        }
+        
         return path
     }
+    
+
     public func getUrlSessionResumeDataFolderPath() -> String {
         let documentsDirectory = self.getBaseDirectory()
         
         let path = documentsDirectory.appending("/urlSessionResumeDataFolder")
         
-        do {
-            try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
-        } catch { }
+        Task { @MainActor in
+            do {
+                try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+            } catch { }
+        }
         return path
     }
 #if os(tvOS)
